@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday!</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    overflow: hidden;
+  }
+  #container {
+    text-align: center;
+  }
+  #clickBtn {
+    padding: 12px 24px;
+    font-size: 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: #FFB6C1;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  #clickBtn:hover {
+    background-color: #FF69B4;
+  }
+  #message {
+    font-size: 28px;
+    margin-top: 20px;
+    display: none;
+  }
+  #bunny {
+    font-size: 60px;
+    margin-bottom: 10px;
+    display: block;
+    animation: bounce 1s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-15px);}
+  }
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 0;
+    animation: fall 2s linear forwards;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg);}
+    100% { transform: translateY(400px) rotate(360deg);}
+  }
+</style>
+</head>
+<body>
+<div id="container">
+  <span id="bunny">🐰</span>
+  <button id="clickBtn">Энд дар 🐇👉</button>
+  <div id="message">🎉 Happy Birthday sweetie, 🎂</div>
+</div>
+
+<script>
+  const btn = document.getElementById("clickBtn");
+  const msg = document.getElementById("message");
+
+  btn.addEventListener("click", () => {
+    msg.style.display = "block";
+    // Confetti үүсгэх
+    for(let i=0; i<50; i++){
+      const conf = document.createElement("div");
+      conf.classList.add("confetti");
+      conf.style.left = Math.random()*window.innerWidth + "px";
+      conf.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
+      document.body.appendChild(conf);
+      setTimeout(()=>{ conf.remove(); }, 2000);
+    }
+  });
+</script>
+</body>
+</html>
